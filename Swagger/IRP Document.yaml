@@ -1,0 +1,179 @@
+openapi: '3.0.0'
+info:
+  version: "1.0.0"
+  title: "iRP Documented"
+  
+    
+servers:
+  - url: http://13.234.193.73:8080
+    description: UAT Base URL 
+  
+paths:
+
+    /api/statement/refund:
+      post:
+        tags:
+          - item
+          
+        summary: Refund
+          
+        security:
+          - bearerAuth: []
+          
+    #       "header": [
+        #   {
+        #     "key": "Authorization",
+        #     "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNtdDJAeW9wbWFpbC5jb20iLCJlbWFpbGlkIjoic210MkB5b3BtYWlsLmNvbSIsImNvbXBhbnlpZCI6MTg3LCJ1c2VyaWQiOjE0MSwiY2hpbGRjb21wYW55aWRzIjpbMTg3XSwiY29tcGFueXR5cGVpZCI6NCwicm9sZWlkIjoxMjAsInBhcmVudGlkIjoxLCJpc01ha2VyIjowLCJpc0NoZWNrZXIiOjEsInJvbGVJZHMiOls1LDYsNCwxMSwxLDIsMTIsMyw4LDksMTAsN10sImlzTWlkZGxlQ2hlY2tlciI6MCwicm9sZU9yZGVyIjowLCJpYXQiOjE2Mzc2NTc4NTB9.BxMkBLU-MYMVZRbUEm7atmr_tHFjn-6f1M25sr9LUxM",
+        #     "type": "text"
+        #   }
+          
+        requestBody:
+          content:
+            application/Json:
+              schema:
+                type: object
+                properties:
+                  refundData:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        REFKEY:
+                          type: string
+                          default: 85828
+                        BENEFICIARY_NAME:
+                          type: string
+                          default: NAVKAR TRADELINKS PVT  LTD
+                        BENEFICIARY_AC_NO: 
+                          type: string
+                          default: 50200012691117
+      
+                        IFSC_CODE:
+                          type: string
+                          default: HDFC0000008
+                        TRANSACTION_AMOUNT:
+                          type: string
+                          default: 8153644.90
+                        COMPANYID:
+                          type: string
+                          default: 185
+                      
+        responses:
+          '200':
+            description: OK
+            content:
+              application/Json:
+                schema:
+                  type: string
+                  
+    /api/bulk/updatepayoutstatus:
+      post:
+        tags:
+          - item
+          
+        summary: UTR Update
+          
+        security:
+          - bearerAuth: []
+          - ApiKeyAuth: []
+          
+    #       "header": [
+        #   {
+        #     "key": "api-key",
+        #     "value": "R3JhbUNvdmVyTnVwYXk=",
+        #     "type": "text"
+        #   },
+        #   {
+        #     "key": "Authorization",
+        #     "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlhdHJhZmluYWxAbWFpbGluYXRvci5jb20iLCJlbWFpbGlkIjoieWF0cmFmaW5hbEBtYWlsaW5hdG9yLmNvbSIsImNvbXBhbnlpZCI6NzgsInVzZXJpZCI6MTIyLCJjaGlsZGNvbXBhbnlpZHMiOls3OCw4MCwxNzksMTU1LDExOSwxNDYsNzksODEsODIsMTE1LDExNiwxMTcsMTMxLDEzMiwxMzMsMTM0LDE3OCwxNDRdLCJjb21wYW55dHlwZWlkIjoyLCJyb2xlaWQiOjExMCwicGFyZW50aWQiOjEsImlzTWFrZXIiOjAsImlzQ2hlY2tlciI6MSwicm9sZUlkcyI6WzUsNiw0LDExLDEsMiwxMiwzLDgsOSwxMCw3XSwiaXNNaWRkbGVDaGVja2VyIjowLCJyb2xlT3JkZXIiOjAsImlhdCI6MTYyMzA1ODgzN30.ueHlXp-Mer_gLOtH1xZewxw9xlzg5XVcInWirHL2cus",
+        #     "type": "text"
+        #   }
+        # ],
+        requestBody:
+          content:
+            application/Json:
+              schema:
+                type: object
+                properties:
+                  RECORD:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                          COMPANYID: 
+                            type: string
+                            default: 189
+                            
+                          CUSTOMER_REF_NO:
+                            type: string
+                            default: 53111
+                          BENEFICIARY_AC_NO: 
+                            type: string
+                            default: 50100195512462
+                          BENEFICIARY_NAME:
+                            type: string
+                            default: TOM
+                          IFSC_CODE: 
+                            type: string
+                            default: HDFC0000XXX
+                          TRANSACTION_AMOUNT:
+                            type: string
+                            default: 50
+                          UTR_NUMBER:
+                            type: string
+                            default: 0832222222
+                  
+                        # type: object
+                        # properties:
+                        #   companyid:
+                        #     type:string
+                        #     default: 189
+        responses:
+          '200':
+            description: OK
+            content:
+              application/Json:
+                schema:
+                  type: string
+                  
+    /api/static/resetStaticSettings:
+      get:
+      
+        summary: Reset Static Settings
+      
+        security:
+          - bearerAuth: []
+          
+    #       "header": [
+        #   {
+        #     "key": "Authorization",
+        #     "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQG1haWwuY29tIiwiZW1haWxpZCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueWlkIjoxLCJ1c2VyaWQiOjMsImNoaWxkY29tcGFueWlkcyI6WzEsMTg1LDE4NywxNDMsMTUwLDE1MiwxMTgsMTY1LDE2NywxNzEsMTc1LDE3NywxMzcsMTk0LDE4MSwxODIsMTkwLDE4OCwxOTIsMTk2LDEyNywxMjgsMTI5LDEzMCwxMzUsMTQxLDEzOCwxMzYsNzgsMTQyLDE1MSwxNTMsMTY0LDE2NiwxNzIsMTc0LDE3NiwxODYsMTg5LDE4MCwxOTEsMTkzLDE5NSwxNTQsMTk3XSwiY29tcGFueXR5cGVpZCI6MSwicm9sZWlkIjoxLCJwYXJlbnRpZCI6MCwiaXNNYWtlciI6MCwiaXNDaGVja2VyIjowLCJyb2xlSWRzIjpbMSwxMSwyLDMsNCw1LDYsNyw4LDksMTAsMTJdLCJpc01pZGRsZUNoZWNrZXIiOjAsInJvbGVPcmRlciI6MCwiaWF0IjoxNjQ1MTg0MTUyfQ.2UVdytQdOFhKwDuqruC5GdrlYk7xdd6TW78BrlGaYt",
+        #     "type": "text"
+        #   }
+        # ],
+                
+        responses:
+          '200':
+            description: OK
+            content:
+              application/Json:
+                schema:
+                  type: string
+                  
+                  
+    
+
+components:
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: X-API-KEY
+      
+security:
+  - bearerAuth: []
